@@ -1,12 +1,12 @@
 # --- Backend (Python) ---
-backend/venv/
+backend/virtualenv001/
 backend/.env
 backend/__pycache__/
 *.pyc
 
 # --- Frontend (Node/React) ---
 frontend/node_modules/
-frontend/.env
+frontend/my-project/.env
 frontend/dist/
 frontend/build/
 
