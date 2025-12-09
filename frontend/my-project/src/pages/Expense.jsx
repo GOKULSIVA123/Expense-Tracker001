@@ -1,31 +1,35 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { motion } from "framer-motion";
+import { Expensecontent } from "../context/Expensecontent";
+import { useNavigate } from "react-router";
 function Expense() {
-  
+  const navigate = useNavigate();
+  const { addExpense } = useContext(Expensecontent);
   const [formdata, setFormdata] = useState({
     title: "",
     amount: "",
-    category: "",
+    category: "Food",
     date: new Date().toISOString().slice(0, 10),
     notes: "",
   });
   console.log(formdata.title);
   const handlechange = (e) => {
     const { name, value } = e.target;
-    setFormdata(prevdata=>({...prevdata,[name]:value}))
+    setFormdata((prevdata) => ({ ...prevdata, [name]: value }));
   };
-  const handlesubmit=(e)=>{
+  const handlesubmit = (e) => {
     e.preventDefault();
-    console.log("formdata",formdata);
+    console.log("formdata", formdata);
+    addExpense(formdata);
     setFormdata({
-    title: "",
-    amount: "",
-    category: "",
-    date: new Date().toISOString().slice(0, 10),
-    notes: "",
-    })
-    
-  }
+      title: "",
+      amount: "",
+      category: "",
+      date: new Date().toISOString().slice(0, 10),
+      notes: "",
+    });
+    navigate("/Dashboard");
+  };
   return (
     <motion.div
       initial={{ opacity: 0, y: -30 }}
@@ -33,7 +37,10 @@ function Expense() {
       transition={{ duration: 0.5 }}
       className="min-h-screen flex flex-col justify-center items-center"
     >
-      <form onSubmit={handlesubmit} className="w-full p-4 bg-[#4fab9a] rounded-lg max-w-[600px] min-h-[500px] flex flex-col items-center justify-around gap-1  shadow-gray-400 shadow-lg md:p-4">
+      <form
+        onSubmit={handlesubmit}
+        className="w-full p-4 bg-[#4fab9a] rounded-lg max-w-[600px] min-h-[500px] flex flex-col items-center justify-around gap-1 shadow-gray-400 shadow-lg md:p-4"
+      >
         <motion.h1
           initial={{}}
           animate={{}}
@@ -44,29 +51,48 @@ function Expense() {
         </motion.h1>
         <div className="flex flex-col items-start justify-center gap-2 mt-5">
           <label className="text-[#504450]">Expense Name:</label>
-          <input onChange={handlechange} value={formdata.title}
-            type="text" name="title"
+          <input
+            onChange={handlechange}
+            value={formdata.title}
+            type="text"
+            name="title"
             className="bg-white px-4 text-black py-1 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#504450] focus:border-[#504450] transition"
           ></input>
           <label className="text-[#504450]">Amount:</label>
-          <input onChange={handlechange} value={formdata.amount}
-            type="number" name="amount"
+          <input
+            onChange={handlechange}
+            value={formdata.amount}
+            type="number"
+            name="amount"
             className="bg-white px-4 py-1 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#504450] focus:border-[#504450] transition"
           ></input>
           <label className="text-[#504450]">Category:</label>
-          <select className="bg-white" onChange={handlechange} value={formdata.category} name="category">
+          <select
+            className="bg-white"
+            onChange={handlechange}
+            value={formdata.category}
+            name="category"
+          >
             <option>Food</option>
             <option>Transport</option>
             <option>Shopping</option>
             <option>Other</option>
           </select>
           <label className="text-[#504450]">Date:</label>
-          <input onChange={handlechange} value={formdata.date}
-            type="date" name="date"
+          <input
+            onChange={handlechange}
+            value={formdata.date}
+            type="date"
+            name="date"
             className="bg-white px-4 rounded-lg py-1 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#504450] focus:border-[#504450]"
           ></input>
           <label className="text-[#504450]">Notes:</label>
-          <textarea onChange={handlechange} name="notes" value={formdata.notes} className="bg-white px-8 rounded-lg py-1 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#504450] focus:border-[#504450] "></textarea>
+          <textarea
+            onChange={handlechange}
+            name="notes"
+            value={formdata.notes}
+            className="bg-white px-8 rounded-lg py-1 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#504450] focus:border-[#504450] "
+          ></textarea>
         </div>
         <motion.button
           whileHover={{ scale: 1.05 }}

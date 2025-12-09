@@ -1,3 +1,26 @@
-@import 'tailwindcss';
-@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+/*
+ * 1. This one import replaces @tailwind base, components, and utilities
+ * It also automatically reads your 'content' paths.
+ */
+@import "tailwindcss";
 
+/*
+ * 2. This is your new "theme.extend" section
+ * All your custom colors go here, inside @theme
+ */
+@theme {
+  --colors-primary: #4fab9a;
+  --colors-sidebar: #bed4d9;
+  --colors-page-bg: #f3f4f6;
+  --colors-text-dark: #1f2937;
+  --colors-success: #4ade80;
+  --colors-danger: #f87171;
+}
+
+/*
+ * 3. (Optional) This is where you can add any custom CSS
+ * or apply styles to the whole page, like your 'page-bg'.
+ */
+/* body {
+  @apply bg-page-bg;
+} */
