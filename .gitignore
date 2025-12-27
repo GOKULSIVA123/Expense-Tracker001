@@ -1,14 +1,14 @@
-# --- Backend (Python) ---
-backend/virtualenv001/
+# Environment Variables (Secrets)
+.env
 backend/.env
-backend/__pycache__/
+frontend/.env
+
+# Dependencies
+node_modules/
+venv/
+virtualenv001/
+__pycache__/
 *.pyc
 
-# --- Frontend (Node/React) ---
-frontend/node_modules/
-frontend/my-project/.env
-frontend/dist/
-frontend/build/
-
-# --- General ---
+# System
 .DS_Store
