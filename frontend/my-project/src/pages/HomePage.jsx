@@ -1,4 +1,4 @@
-import React, { useContext,useState } from "react";
+import React, { useContext, useState } from "react";
 import { Expensecontent } from "../context/Expensecontent";
 import { Navcontent } from "../context/Navcontent";
 function HomePage() {
@@ -39,7 +39,7 @@ function HomePage() {
           <div className="flex-1 min-h-[50px] p-4">
             <div className="bg-white rounded-lg min-h-[100px] text-center p-4">
               <label className="text-xl font-semibold text-gray-700">
-                Your Target Days:
+                Target Month Goal:
               </label>
               <h1 className="text-2xl font-semibold text-green-400">
                 {target1}
